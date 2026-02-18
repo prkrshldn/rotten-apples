@@ -1,5 +1,6 @@
 import './style.css'
 import raLogo from '/rottenapplesv2.png'
+import { ratingcolor, songcolor } from './components/color.js'
 
 document.querySelector('#app').innerHTML = `
   <div class="flex justify-center items-center">
@@ -15,38 +16,6 @@ document.querySelector('#app').innerHTML = `
       </div>
     </div>
 `
-
-function ratingcolor(score) {
-  if (100 < score || score > 91) {
-    return "#00FF00";
-  } else if (90 < score || score > 81) {
-    return "#93C47D";
-  } else if (80 < score || score > 71) {
-    return "#B6D7A8";
-  } else if (70 < score || score > 61) {
-    return "#FFFF00";
-  } else if (60 < score || score > 51) {
-    return "#FFD966";
-  } else if (50 < score || score > 41) {
-    return "#FFE599";
-  }
-}
-
-function songcolor(score) {
-  if (10 < score || score > 9.1) {
-    return "#6766ff";
-  } else if (9.0 < score || score > 8.1) {
-    return "#93C47D";
-  } else if (8.0 < score || score > 7.1) {
-    return "#B6D7A8";
-  } else if (7.0 < score || score > 6.1) {
-    return "#FFFF00";
-  } else if (6.0 < score || score > 5.1) {
-    return "#FFD966";
-  } else if (5.0 < score || score > 4.1) {
-    return "#FFE599";
-  }
-}
 
 const albumId = new URLSearchParams(window.location.search).get('id')
 
@@ -70,10 +39,10 @@ if (albumId) {
                         <div class="overflow-x-auto">
                             <table class="w-full">
                                 <thead>
-                                    <tr><th>Song</th><th>Score</th></tr>
+                                    <tr><th class="border-2 p-1">#</th><th class="border-2 p-1">Song [Song Rank]</th><th class="border-2 p-1">Score</th></tr>
                                 </thead>
                                 <tbody class="border-2 divide-y bg-black/65">
-                                    ${data.songs.map((song, i) => `<tr><td>${i + 1}</td><td class="font-mono border-2 p-1 font-bold text-left">${song.name}</td><td class="border-2 p-1">${song.score}</td></tr>`).join('')}
+                                    ${data.songs.map((song, i) => `<tr><td>${i + 1}</td><td class="font-mono border-2 p-1 font-bold text-left">${song.name} [${song.song_rank ? `#${song.song_rank}` : 'Unranked'}]</td><td class="border-2 p-1">${song.score}</td></tr>`).join('')}
                                 </tbody>
                             </table>
                         </div>

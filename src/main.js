@@ -10,7 +10,7 @@ document.querySelector('#app').innerHTML = `
       </p>
       <div class="card">
         <button id="albumwall" type="button">Album Wall</button>
-        <button id="songlist" type="button">Song List</button>
+        <button id="songlist" type="button">Song/Album List</button>
         <button id="apidoc" type="button">API Doc</button>
       </div>
     </div>

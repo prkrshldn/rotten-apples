@@ -4,37 +4,17 @@ import raLogo from '/rottenapplesv2.png'
 document.querySelector('#app').innerHTML = `
   <div class="flex justify-center items-center">
     <div class="text-center">
-      <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
+      <a href="/" class="block">
+        <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
+      </a>
       <div>
-        <button id="albumwall" type="button">Album Wall</button>
-        <button id="songlist" type="button">Song List</button>
-        <button id="apidoc" type="button">API Doc</button>
+        <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
+        <button id="songlist" onclick="window.location.href = '/list'" type="button">Song/Album List</button>
+        <button id="apidoc" onclick="window.location.href = 'http://127.0.0.1:8000/docs'" type="button">API Doc</button>
       </div>
     </div>
   </div>
 `
-
-albumWall(document.querySelector('#albumwall'))
-songList(document.querySelector('#songlist'))
-apiDoc(document.querySelector('#apidoc'))
-
-function albumWall(button) {
-  button.addEventListener('click', () => {
-    window.location.href = '/albumwall'
-  })
-}
-
-function songList(button) {
-  button.addEventListener('click', () => {
-    window.location.href = '/songlist'
-  })
-}
-
-function apiDoc(button) {
-  button.addEventListener('click', () => {
-    window.location.href = 'http://127.0.0.1:8000/docs'
-  })
-}
 
 async function fetchAlbums() {
     const response = await fetch('http://127.0.0.1:8000/albums');
@@ -51,7 +31,6 @@ function createImageWall(albums) {
     albums.forEach(album => {
         const linkElement = document.createElement('a');
         linkElement.href = `/album?id=${album.id}`;
-        linkElement.target = '_blank';
         grid.appendChild(linkElement);
         const imageElement = document.createElement('img');
         imageElement.src = `http://127.0.0.1:8000${album.image_url}?width=200&quality=80`;

@@ -10,8 +10,8 @@ document.querySelector('#app').innerHTML = `
         </a>
         <div>
           <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
-          <button id="songlist" onclick="window.location.href = '/list'" type="button">Song/Album List</button>
-          <button id="apidoc" onclick="window.location.href = 'http://127.0.0.1:8000/docs'" type="button">API Doc</button>
+          <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
+          <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 const albumId = new URLSearchParams(window.location.search).get('id')
 
 if (albumId) {
-  fetch(`http://127.0.0.1:8000/album/${albumId}`)
+  fetch(`https://rottenapples-api-e2be98c3f8f2.herokuapp.com/album/${albumId}`)
     .then(res => res.json())
     .then(data => {
       document.title = `${data.title} by ${data.artist} | Rotten Apples`
@@ -42,7 +42,7 @@ if (albumId) {
                                     <tr><th class="border-2 p-1">#</th><th class="border-2 p-1">Song [Song Rank]</th><th class="border-2 p-1">Score</th></tr>
                                 </thead>
                                 <tbody class="border-2 divide-y bg-black/65">
-                                    ${data.songs.map((song, i) => `<tr><td>${i + 1}</td><td class="font-mono border-2 p-1 font-bold text-left">${song.name} [${song.song_rank ? `#${song.song_rank}` : 'Unranked'}]</td><td class="border-2 p-1">${song.score}</td></tr>`).join('')}
+                                    ${data.songs.map((song, i) => `<tr><td>${i + 1}</td><td class="font-mono border-2 p-1 font-bold text-left">${song.name} [${song.song_rank ? `#${song.song_rank}` : 'Unranked'}]</td><td class="border-2 p-1"><span style="color: ${songcolor(song.score)}">${song.score}</span></td></tr>`).join('')}
                                 </tbody>
                             </table>
                         </div>

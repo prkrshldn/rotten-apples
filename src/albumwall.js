@@ -10,15 +10,15 @@ document.querySelector('#app').innerHTML = `
       </a>
       <div>
         <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
-        <button id="songlist" onclick="window.location.href = '/list'" type="button">Song/Album List</button>
-        <button id="apidoc" onclick="window.location.href = 'http://127.0.0.1:8000/docs'" type="button">API Doc</button>
+        <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
+        <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
       </div>
     </div>
   </div>
 `
 
 async function fetchAlbums() {
-  const response = await fetch('http://127.0.0.1:8000/albums');
+  const response = await fetch('https://rottenapples-api-e2be98c3f8f2.herokuapp.com/albums');
   return response.json();
 }
 

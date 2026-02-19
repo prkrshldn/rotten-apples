@@ -10,7 +10,7 @@ document.querySelector('#app').innerHTML = `
       </p>
       <div class="card">
         <button id="albumwall" type="button">Album Wall</button>
-        <button id="songlist" type="button">Song/Album List</button>
+        <button id="songlist" type="button">Song List</button>
         <button id="apidoc" type="button">API Doc</button>
       </div>
     </div>
@@ -29,12 +29,12 @@ function albumWall(button) {
 
 function songList(button) {
   button.addEventListener('click', () => {
-    window.location.href = '/songlist'
+    window.location.href = '/list'
   })
 }
 
 function apiDoc(button) {
   button.addEventListener('click', () => {
-    window.location.href = 'http://127.0.0.1:8000/docs'
+    window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'
   })
 }

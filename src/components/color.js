@@ -15,18 +15,30 @@ function ratingcolor(score) {
 }
 
 function songcolor(score) {
-  if (10 < score || score > 9.1) {
+  if (10 == score) {
     return "#6766ff";
-  } else if (9.0 < score || score > 8.1) {
-    return "#93C47D";
-  } else if (8.0 < score || score > 7.1) {
-    return "#B6D7A8";
-  } else if (7.0 < score || score > 6.1) {
-    return "#FFFF00";
-  } else if (6.0 < score || score > 5.1) {
-    return "#FFD966";
-  } else if (5.0 < score || score > 4.1) {
-    return "#FFE599";
+  } else if (9.9 < score && score > 9.0) {
+    return "#00ffa3";
+  } else if (8.9 < score && score > 8.0) {
+    return "#669934";
+  } else if (7.9 < score && score > 7.0) {
+    return "#f5ff00";
+  } else if (6.9 < score && score > 6.0) {
+    return "#ffa800";
+  } else if (5.9 < score && score > 5.0) {
+    return "#ff6100";
+  } else if (4.9 < score && score > 4.0) {
+    return "#fe0000";
+  } else if (3.9 < score && score > 3.0) {
+    return "#ff00fe";
+  } else if (2.9 < score && score > 2.0) {
+    return "#c100ff";
+  } else if (1.9 < score && score > 1.0) {
+    return "#640070";
+  } else if (0.9 < score && score > 0.0) {
+    return "#ffffff";
+  } else {
+    return "#ffffff";
   }
 }
 

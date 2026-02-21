@@ -36,8 +36,8 @@ function createImageWall(albums) {
     grid.appendChild(linkElement);
 
     const imageElement = document.createElement('img');
-    imageElement.src = `http://127.0.0.1:8000${album.image_url}?width=200&quality=80`;
-    imageElement.srcset = `http://127.0.0.1:8000${album.image_url}?width=200&quality=80 1x, http://127.0.0.1:8000${album.image_url}?width=400&quality=80 2x`;
+    imageElement.src = `https://rottenapples-api-e2be98c3f8f2.herokuapp.com${album.image_url}?width=200&quality=80`;
+    imageElement.srcset = `https://rottenapples-api-e2be98c3f8f2.herokuapp.com${album.image_url}?width=200&quality=80 1x, https://rottenapples-api-e2be98c3f8f2.herokuapp.com${album.image_url}?width=400&quality=80 2x`;
     imageElement.loading = 'lazy';
     imageElement.alt = album.title;
     imageElement.className = 'w-full h-full object-cover rounded-lg shadow-md group-hover:shadow-lg transition-all duration-200 group-hover:scale-110 cursor-pointer';

@@ -28,7 +28,7 @@ if (albumId) {
             <div style="background-color: rgba(248, 44, 43, 0.2); border-radius: 1em; padding: 1rem; margin-top: 1rem;">
             <div class="flex justify-center items-center">
                 <div class="text-center">
-                    <img src="http://127.0.0.1:8000${data.image_url}?width=1000&quality=80" alt="${data.title}" class="logo mx-auto w-1/2" />
+                    <img src="https://rottenapples-api-e2be98c3f8f2.herokuapp.com${data.image_url}?width=1000&quality=80" alt="${data.title}" class="logo mx-auto w-1/2" />
                     <h2 class="text-2xl font-bold">${data.title}</h2>
                     <h2 class="text-xl italic">by ${data.artist}</h2>
                 </div>

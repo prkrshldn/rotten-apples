@@ -2,20 +2,25 @@ import './style.css'
 import raLogo from '/rottenapplesv2.png'
 import { ratingcolor, songcolor } from './components/color.js'
 
-document.querySelector('#app').innerHTML = `
-  <div class="flex justify-center items-center">
-    <div class="text-center">
-      <a href="/" class="block">
-        <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
-      </a>
-      <div>
-        <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
-        <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
-        <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+export function renderAlbumWall() {
+  document.title = 'Album Wall | Rotten Apples'
+  document.querySelector('#app').innerHTML = `
+    <div class="flex justify-center items-center">
+      <div class="text-center">
+        <a href="/index.html" class="block">
+          <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
+        </a>
+        <div>
+          <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
+          <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
+          <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+        </div>
       </div>
     </div>
-  </div>
-`
+  `
+
+  initializeAlbumWall()
+}
 
 async function fetchAlbums() {
   const response = await fetch('https://rottenapples-api-e2be98c3f8f2.herokuapp.com/albums');
@@ -31,7 +36,7 @@ function createImageWall(albums) {
 
   albums.forEach(album => {
     const linkElement = document.createElement('a');
-    linkElement.href = `/album?id=${album.id}`;
+    linkElement.href = `/albums?id=${album.id}`;
     linkElement.className = 'relative group';
     grid.appendChild(linkElement);
 
@@ -60,5 +65,3 @@ async function initializeAlbumWall() {
     console.error('Error loading albums:', error);
   }
 }
-
-document.addEventListener('DOMContentLoaded', initializeAlbumWall);

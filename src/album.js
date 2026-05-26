@@ -2,29 +2,30 @@ import './style.css'
 import raLogo from '/rottenapplesv2.png'
 import { ratingcolor, songcolor } from './components/color.js'
 
-document.querySelector('#app').innerHTML = `
-  <div class="flex justify-center items-center">
-      <div class="text-center">
-        <a href="/" class="block">
-          <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
-        </a>
-        <div>
-          <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
-          <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
-          <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
-        </div>
-      </div>
-    </div>
-`
+export function renderAlbum() {
+    document.querySelector('#app').innerHTML = `
+        <div class="flex justify-center items-center">
+                <div class="text-center">
+                    <a href="/index.html" class="block">
+                        <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
+                    </a>
+                    <div>
+                        <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
+                        <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
+                        <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+                    </div>
+                </div>
+            </div>
+    `
 
-const albumId = new URLSearchParams(window.location.search).get('id')
+    const albumId = new URLSearchParams(window.location.search).get('id')
 
-if (albumId) {
-  fetch(`https://rottenapples-api-e2be98c3f8f2.herokuapp.com/album/${albumId}`)
-    .then(res => res.json())
-    .then(data => {
-      document.title = `${data.title} by ${data.artist} | Rotten Apples`
-      document.querySelector('#app').innerHTML += `
+    if (albumId) {
+        fetch(`https://rottenapples-api-e2be98c3f8f2.herokuapp.com/album/${albumId}`)
+            .then(res => res.json())
+            .then(data => {
+                document.title = `${data.title} by ${data.artist} | Rotten Apples`
+                document.querySelector('#app').innerHTML += `
             <div style="background-color: rgba(248, 44, 43, 0.2); border-radius: 1em; padding: 1rem; margin-top: 1rem;">
             <div class="flex justify-center items-center">
                 <div class="text-center">
@@ -73,5 +74,6 @@ if (albumId) {
                 <p>Built with ❤ by <a href="https://prkrshldn.github.io" target="_blank" class="text-red-500">prkrshldn</a>.</p>
             </footer>
             `
-    })
+      })
+  }
 }

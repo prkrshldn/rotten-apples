@@ -1,8 +1,10 @@
 import './style.css'
 import raLogo from '/rottenapplesv2.png'
-import { ratingcolor, songcolor } from './components/color.js'
+import { songcolor } from './components/color.js'
 
-document.querySelector('#list').innerHTML = `
+export function renderList() {
+  document.title = 'Song List | Rotten Apples'
+  document.querySelector('#app').innerHTML = `
     <div class="flex justify-center items-center">
         <div class="text-center">
             <a href="/" class="block">
@@ -35,7 +37,10 @@ document.querySelector('#list').innerHTML = `
             </div>
         </div>
     </div>
-`
+  `
+
+  fetchAndDisplaySongs()
+}
 
 async function fetchAndDisplaySongs() {
     try {
@@ -58,7 +63,7 @@ async function fetchAndDisplaySongs() {
             const songList = paginatedSongs.map(song => `
                 <tr>
                     <td class="border text-center text-2xl font-bold">${song.song_rank}</td>
-                    <td class="border"><a href="/album?id=${song.album_id}" style="display: flex; align-items: center; gap: 8px;"><img src="https://rottenapples-api-e2be98c3f8f2.herokuapp.com/image/${song.album_id}.jpg?width=64&quality=100" class="w-16 h-16 object-cover rounded-md" alt="${song.name}"><span>${song.name}</span></a></td>
+                    <td class="border"><a href="/albums?id=${song.album_id}" style="display: flex; align-items: center; gap: 8px;"><img src="https://rottenapples-api-e2be98c3f8f2.herokuapp.com/image/${song.album_id}.jpg?width=64&quality=100" class="w-16 h-16 object-cover rounded-md" alt="${song.name}"><span>${song.name}</span></a></td>
                     <td class="border"><span class="text-2xl font-bold" style="color: ${songcolor(song.score)}">${song.score}</span></td>
                 </tr>
             `).join('')
@@ -127,7 +132,7 @@ async function fetchAndDisplaySongs() {
         document.querySelector('#sort-controls').innerHTML = selectHtml
 
         renderSongs(songs, sortOrder, currentPage)
-        document.querySelector('#list').innerHTML += `
+        document.querySelector('#app').innerHTML += `
         <footer class="text-center m-4 text-sm text-gray-300">
             <p>Built with ❤ by <a href="https://prkrshldn.github.io" target="_blank" class="text-red-500">prkrshldn</a>.</p>
         </footer>
@@ -136,5 +141,3 @@ async function fetchAndDisplaySongs() {
         console.error('Error fetching songs:', error)
     }
 }
-
-fetchAndDisplaySongs()

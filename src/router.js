@@ -8,21 +8,26 @@ async function renderCurrentRoute() {
     return
   }
 
-  if (pathname === '/list' || pathname === '/list.html') {
+  if (pathname === '/list') {
     const { renderList } = await import('./list.js')
     renderList()
     return
   }
 
-  if (pathname === '/albums' || pathname === '/albums.html') {
+  if (pathname === '/albums') {
     const { renderAlbum } = await import('./album.js')
     renderAlbum()
     return
   }
 
-  if (pathname === '/albumwall' || pathname === '/albumwall.html') {
+  if (pathname === '/albumwall') {
     const { renderAlbumWall } = await import('./albumwall.js')
     renderAlbumWall()
+    return
+  }
+
+  if (pathname === '/apidoc') {
+    window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'
     return
   }
 

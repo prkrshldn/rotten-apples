@@ -11,9 +11,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        album: './album.html',
-        albumwall: './albumwall.html',
-        list: './list.html',
       }
     }
   }

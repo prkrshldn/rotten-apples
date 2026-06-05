@@ -13,7 +13,7 @@ export function renderAlbumWall() {
         <div>
           <button id="albumwall" onclick="window.navigateTo('/albumwall')" type="button">Album Wall</button>
           <button id="songlist" onclick="window.navigateTo('/list')" type="button">Song List</button>
-          <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+          <button id="apidoc" onclick="window.location.href = 'https://rottenapple-api.up.railway.app/docs'" type="button">API Doc</button>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@ export function renderAlbumWall() {
 }
 
 async function fetchAlbums() {
-  const response = await fetch('https://rottenapples-api-e2be98c3f8f2.herokuapp.com/albums');
+  const response = await fetch('https://rottenapple-api.up.railway.app/albums');
   return response.json();
 }
 

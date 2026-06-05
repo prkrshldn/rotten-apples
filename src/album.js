@@ -12,7 +12,7 @@ export function renderAlbum() {
                     <div>
                         <button id="albumwall" onclick="window.navigateTo('/albumwall')" type="button">Album Wall</button>
                         <button id="songlist" onclick="window.navigateTo('/list')" type="button">Song List</button>
-                        <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+                        <button id="apidoc" onclick="window.location.href = 'https://rottenapple-api.up.railway.app/docs'" type="button">API Doc</button>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@ export function renderAlbum() {
     const albumId = new URLSearchParams(window.location.search).get('id')
 
     if (albumId) {
-        fetch(`https://rottenapples-api-e2be98c3f8f2.herokuapp.com/album/${albumId}`)
+        fetch(`https://rottenapple-api.up.railway.app/album/${albumId}`)
             .then(res => res.json())
             .then(data => {
                 document.title = `${data.title} by ${data.artist} | Rotten Apples`

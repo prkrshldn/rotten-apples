@@ -13,7 +13,7 @@ export function renderList() {
             <div>
                 <button id="albumwall" onclick="window.navigateTo('/albumwall')" type="button">Album Wall</button>
                 <button id="songlist" onclick="window.navigateTo('/list')" type="button">Song List</button>
-                <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
+                <button id="apidoc" onclick="window.location.href = 'https://rottenapple-api.up.railway.app/docs'" type="button">API Doc</button>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ export function renderList() {
 
 async function fetchAndDisplaySongs() {
     try {
-        const response = await fetch('https://rottenapples-api-e2be98c3f8f2.herokuapp.com/songs')
+        const response = await fetch('https://rottenapple-api.up.railway.app/songs')
         const songs = await response.json()
 
         let sortOrder = 'asc'
@@ -63,7 +63,7 @@ async function fetchAndDisplaySongs() {
             const songList = paginatedSongs.map(song => `
                 <tr>
                     <td class="border text-center text-2xl font-bold">${song.song_rank}</td>
-                    <td class="border"><a href="/albums?id=${song.album_id}" style="display: flex; align-items: center; gap: 8px;"><img src="https://rottenapples-api-e2be98c3f8f2.herokuapp.com/image/${song.album_id}.jpg?width=64&quality=100" class="w-16 h-16 object-cover rounded-md" alt="${song.name}"><span>${song.name}</span></a></td>
+                    <td class="border"><a href="/albums?id=${song.album_id}" style="display: flex; align-items: center; gap: 8px;"><img src="https://rottenapple-api.up.railway.app/image/${song.album_id}.jpg?width=64&quality=100" class="w-16 h-16 object-cover rounded-md" alt="${song.name}"><span>${song.name}</span></a></td>
                     <td class="border"><span class="text-2xl font-bold" style="color: ${songcolor(song.score)}">${song.score}</span></td>
                 </tr>
             `).join('')

@@ -38,6 +38,6 @@ function songList(button) {
 
 function apiDoc(button) {
   button.addEventListener('click', () => {
-    window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'
+    window.location.href = 'https://rottenapple-api.up.railway.app/docs'
   })
 }

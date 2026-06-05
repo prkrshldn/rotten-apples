@@ -1,5 +1,7 @@
 import { renderHome } from './main.js'
 
+let routerInitialized = false
+
 async function renderCurrentRoute() {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/'
 
@@ -34,11 +36,48 @@ async function renderCurrentRoute() {
   renderHome()
 }
 
+function navigateTo(path) {
+  if (window.location.pathname + window.location.search !== path) {
+    window.history.pushState({}, '', path)
+  }
+  startRouter()
+}
+
+function shouldHandleAsSpaNavigation(anchor, event) {
+  if (!anchor) return false
+  if (anchor.target && anchor.target.toLowerCase() === '_blank') return false
+  if (event.defaultPrevented) return false
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return false
+
+  const url = new URL(anchor.href, window.location.origin)
+  if (url.origin !== window.location.origin) return false
+
+  return ['/', '/list', '/albums', '/albumwall'].includes(url.pathname)
+}
+
+function installRouterNavigation() {
+  if (routerInitialized) return
+  routerInitialized = true
+
+  window.navigateTo = navigateTo
+
+  document.addEventListener('click', event => {
+    const anchor = event.target.closest('a[href]')
+    if (!shouldHandleAsSpaNavigation(anchor, event)) return
+
+    event.preventDefault()
+    const path = anchor.pathname + anchor.search
+    navigateTo(path)
+  })
+}
+
 function startRouter() {
   renderCurrentRoute().catch(error => {
     console.error('Router failed to render route:', error)
   })
 }
+
+installRouterNavigation()
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', startRouter)

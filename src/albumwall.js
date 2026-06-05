@@ -11,8 +11,8 @@ export function renderAlbumWall() {
           <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
         </a>
         <div>
-          <button id="albumwall" onclick="window.location.href = '/albumwall'" type="button">Album Wall</button>
-          <button id="songlist" onclick="window.location.href = '/list'" type="button">Song List</button>
+          <button id="albumwall" onclick="window.navigateTo('/albumwall')" type="button">Album Wall</button>
+          <button id="songlist" onclick="window.navigateTo('/list')" type="button">Song List</button>
           <button id="apidoc" onclick="window.location.href = 'https://rottenapples-api-e2be98c3f8f2.herokuapp.com/docs'" type="button">API Doc</button>
         </div>
       </div>

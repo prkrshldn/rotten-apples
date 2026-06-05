@@ -26,13 +26,13 @@ export function renderHome() {
 
 function albumWall(button) {
   button.addEventListener('click', () => {
-    window.location.href = '/albumwall'
+    window.navigateTo('/albumwall')
   })
 }
 
 function songList(button) {
   button.addEventListener('click', () => {
-    window.location.href = '/list'
+    window.navigateTo('/list')
   })
 }
 

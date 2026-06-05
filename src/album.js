@@ -6,7 +6,7 @@ export function renderAlbum() {
     document.querySelector('#app').innerHTML = `
         <div class="flex justify-center items-center">
                 <div class="text-center">
-                    <a href="/index.html" class="block">
+                    <a href="/" class="block">
                         <img src="${raLogo}" class="logo mx-auto w-1/2" alt="Rotten Apples Logo" />
                     </a>
                     <div>
